@@ -1,0 +1,10 @@
+<html ng-app="app">
+<h1>Please Login</h1>
+
+<button class="btn btn-primary" ng-submit="$ctrl.anoLogin()">Anonymus</button>
+<br>
+<button class="btn btn-primary" ng-submit="fbLogin()">log in with fb</button>
+
+<br><br>
+<div class="alert alert-danger" ng-show="!!$ctrl.errorMessage">{{errorMessage}}</div>
+</html>

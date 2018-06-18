@@ -1,0 +1,64 @@
+
+<html>
+<meta charset="utf-8">
+<body>
+ 
+<div id="filesubmit">
+  <input type="file" class="file-select" accept="image/*"/>
+  <button class="file-submit">SUBMIT</button>
+</div>
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+<script>
+  // Initialize Firebase
+
+  console.log("Hello");
+  var config = {
+    apiKey: "AIzaSyAlY1JvY3dQtHORR2zfRRFmbcq5GHt8XOs",
+    authDomain: "chatapp-35578.firebaseapp.com",
+    databaseURL: "https://chatapp-35578.firebaseio.com",
+    projectId: "chatapp-35578",
+    storageBucket: "chatapp-35578.appspot.com",
+    messagingSenderId: "73207957480"
+  };
+   firebase.initializeApp(config);
+
+     console.log("Initialized");
+
+</script>
+<script>
+
+  console.log("idhar aya");
+  const storageService = firebase.storage();
+  const storageRef = storageService.ref();
+
+document.querySelector(".file-select").addEventListener('change', handleFileUploadChange);
+
+document.querySelector(".file-submit").addEventListener('click', handleFileUploadSubmit);
+console.log(" ab idhar aya");
+
+var selectedFile;
+
+function handleFileUploadChange(e) {
+  selectedFile = e.target.files[0];
+};
+function handleFileUploadSubmit(e) {
+
+  const uploadTask = storageRef.child(`images/${selectedFile.name}`).put(selectedFile); //create a child directory called images, and place the file inside this directory
+console.log("abhi idhar aya");
+  uploadTask.on('state_changed', (snapshot) => {
+  // Observe state change events such as progress, pause, and resume
+  }, (error) => {
+    // Handle unsuccessful uploads
+    console.log(error);
+  }, () => {
+     // Do something once upload is complete
+     console.log('success');
+  });
+};
+</script>
+ <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="app.js"></script>
+    <script src="auth/auth.controller.js"></script>
+    <script src="auth/auth.service.js"></script>
+</body>
+</html>

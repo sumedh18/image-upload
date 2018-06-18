@@ -1,0 +1,28 @@
+ <html>
+        <body>
+            <input type="file" id="fileButton"/>
+
+            <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+            <script>
+            // Initialize Firebase
+                var config = {
+    apiKey: "AIzaSyAlY1JvY3dQtHORR2zfRRFmbcq5GHt8XOs",
+    authDomain: "chatapp-35578.firebaseapp.com",
+    databaseURL: "https://chatapp-35578.firebaseio.com",
+    projectId: "chatapp-35578",
+    storageBucket: "chatapp-35578.appspot.com",
+    messagingSenderId: "73207957480"
+  };
+                firebase.initializeApp(config);
+           </script>
+           <script>
+           console.log("done")
+              var fileButton = document.getElementById("fileButton");
+              fileButton.addEventListener('change', function(e){
+                  var file = e.target.files[0];
+                  var storageRef = firebase.storage().ref(file.name);
+                  storageRef.put(file);
+              });  
+           </script>
+      </body>
+</html>
